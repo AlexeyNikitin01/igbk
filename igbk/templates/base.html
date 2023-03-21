@@ -1,0 +1,23 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Главная{% endblock %} - Генерация картинок по ключевым словам</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% bootstrap_javascript jquery='slim' %}
+</head>
+<body class="container-fluid">
+    <div class="h1 text-center">
+        |ЭТО БАЗОВАЯ СТРАНИЦА| <br>
+        |ТУТ БУДУТ ПРОПИСАНЫ МЕНЮ ДЛЯ ВСЕХ HTML|
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
