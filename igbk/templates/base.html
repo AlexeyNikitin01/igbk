@@ -13,11 +13,46 @@
     {% bootstrap_javascript jquery='slim' %}
 </head>
 <body class="container-fluid">
-    <div class="h1 text-center">
-        |ЭТО БАЗОВАЯ СТРАНИЦА| <br>
-        |ТУТ БУДУТ ПРОПИСАНЫ МЕНЮ ДЛЯ ВСЕХ HTML|
+    <h1 class="display-1 text-center container mb-4 ">Gen-IMG</h1>
+    <div class="row">
+        <ul class="col nav justify-content-end border">
+            <li class="nav-item">
+                <form action="#" method="get" class="form-inline my-2 my-lg-0">
+                  <input name="q" type="text" class="form-control mr-sm-2" placeholder="Поиск" aria-label="Поиск">
+                  <button class="btn btn-outline-success my-2 my-sm-2 mr-2" type="submit">Поиск</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-success my-2 my-sm-2 mr-2" href="#">Регистрация</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="btn btn-outline-success my-2 my-sm-2 mr-2 dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">Профиль</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Профиль</a>
+                    <div class="dropdown-driver border"></div>
+                    <a class="dropdown-item" href="#">Выйти</a>
+                </div>
+            </li>
+            {% else %}
+            <li class="nav-item"><a href="#" class="btn btn-outline-success my-2 my-sm-2 mr-2">Вход</a></li>
+            {% endif %}
+        </ul>
     </div>
-    {% block content %}
-    {% endblock %}
+    <div class="row border">
+        <nav class="col-md-auto nav flex-column border">
+            <a class="nav-link root font-weight-bold" href="#">О нас</a>
+            <a class="nav-link root font-weight-bold" href="#">Главная</a>
+        </nav>
+        <section class="col border ру-2">
+            {% bootstrap_messages %}
+            {% block content %}
+            {% endblock %}
+        </section>
+    </div>
+    <footer class="mt-3">
+        <p class="text-center font-italic">МАИ, 2023 г.</p>
+    </footer>
 </body>
 </html>
