@@ -11,3 +11,7 @@ def index(request):
     else:
         form = KeysWordsForm()
     return render(request, template_name='main/index.html', context={'form': form})
+
+
+def about(request):
+    return render(request, template_name='main/about.html', context={})

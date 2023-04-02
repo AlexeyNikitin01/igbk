@@ -42,8 +42,8 @@
     </div>
     <div class="row border">
         <nav class="col-md-auto nav flex-column border">
-            <a class="nav-link root font-weight-bold" href="#">О нас</a>
-            <a class="nav-link root font-weight-bold" href="#">Главная</a>
+            <a class="nav-link root font-weight-bold" href="{% url 'main:about' %}">О нас</a>
+            <a class="nav-link root font-weight-bold" href="{% url 'main:index' %}">Главная</a>
         </nav>
         <section class="col border ру-2">
             {% bootstrap_messages %}
