@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+Страница пользователя
+    <div class="dark container-fluid">
+        <h1 class="text-center">Имя пользователя ---- {{ user.username }}</h1>
+    </div>
+{% endblock %}
