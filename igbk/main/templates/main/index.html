@@ -2,16 +2,30 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <div class="container text-center h1">
-        <form action="{% url 'main:index' %}" method="post">
-            {% csrf_token %}
-            <div class="card-body container-fluid">
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Extract keywords</label>
-                    <textarea class="form-control" name="keys_words" id="exampleFormControlTextarea1" rows="5"></textarea>
+    {% if user.is_authenticated %}
+        <div class="container text-center h1">
+            <form action="{% url 'main:index' %}" method="post">
+                {% csrf_token %}
+                <div class="card-body container-fluid">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Extract keywords</label>
+                        <textarea class="form-control" name="keys_words" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary container-fluid">Отправить</button>
                 </div>
-                <button type="submit" class="btn btn-primary container-fluid">Отправить</button>
+            </form>
+        </div>
+    {% else %}
+            <div class="text-center">
+                <p class="display-4 font-weight-bold">
+                    Приветствуем Вас <br>
+                    На нашем сайте для генерации картинок <br>
+                </p>
+                <p class="text">
+                    Для работы с сайтом Вы должны быть авторизированы
+                </p>
+                <a class="btn btn-outline-success mb-2" href="{% url 'users:SignUp' %}">Регистрация</a>
+                <a href="{% url 'users:login' %}" class="btn btn-outline-success center mb-2">Вход</a>
             </div>
-        </form>
-    </div>
+    {% endif %}
 {% endblock %}
