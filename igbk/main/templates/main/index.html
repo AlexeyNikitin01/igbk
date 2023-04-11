@@ -1,20 +1,49 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
+{% load static %}
 
 {% block content %}
     {% if user.is_authenticated %}
+        <p class="text-center mt-3 display-4 font-weight-bold">
+            Опишите личность
+        </p>
         <div class="container text-center h1">
             <form action="{% url 'main:index' %}" method="post">
                 {% csrf_token %}
-                <div class="card-body container-fluid">
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Extract keywords</label>
-                        <textarea class="form-control" name="keys_words" id="exampleFormControlTextarea1" rows="5"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary container-fluid">Отправить</button>
+                <div class="h4 mt-3">
+                    {% bootstrap_form form layout='horizontal' %}
                 </div>
+                {% buttons submit='Полетели!' %}{% endbuttons %}
             </form>
         </div>
+        <p class="display-4 text-center">
+            Это ваши запросы:
+        </p>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                  <th scope="col">Описание</th>
+                  <th scope="col">Фоторобот</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for j in que.values %}
+                <tr>
+                  <th scope="row">
+                        {% for k, v in j.items %}
+                            <h4 class="text-weight-bold">
+                                | {{ k }}: {{ v }}
+                            </h4>
+                        {% endfor %}
+                        <br>
+                  </th>
+                  <td>
+                    <img src="{% static 'albert.jpg' %}" width="100" alt="My image">
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
             <div class="text-center">
                 <p class="display-4 font-weight-bold">

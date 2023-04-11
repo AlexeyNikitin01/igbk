@@ -15,7 +15,11 @@
           </thead>
           <tbody>
             <tr>
-              <td> {{ keys_words }}</td>
+              <td>
+              {% for i in form %}
+                  {{ i }}
+              {% endfor %}
+              </td>
               <td> Creating image ... </td>
             </tr>
           </tbody>
