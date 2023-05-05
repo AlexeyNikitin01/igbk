@@ -1,12 +1,13 @@
-from .image_generation import fake_gen
+from PIL import Image
+
+from .image_generation import generate_image
 from .keyword_generation import prompt_to_generate
 
 
-def gen_img(keywords: list):
+def gen_img(keywords: list, realize: bool =False) -> Image:
     p = prompt_to_generate(keywords)
-    # img_url = generate_image(prompt=p)
-    img_url = fake_gen(prompt=p)
-    return img_url
+    img = generate_image(prompt=p, realize=realize)
+    return img
 
 
 if __name__ == "__main__":

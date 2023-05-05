@@ -27,18 +27,30 @@
                 </tr>
             </thead>
             <tbody>
-                {% for j in que.values %}
+                {% for t in que.values %}
+                    {{ t }}
+                {% endfor %}
+                {% for j in data.values %}
                 <tr>
                   <th scope="row">
-                        {% for k, v in j.items %}
-                            <h4 class="text-weight-bold">
-                                | {{ k }}: {{ v }}
-                            </h4>
+                      <h4 class="text-weight-bold">
+                            {% for t in que.values %}
+                                {% for k, v in t.items %}
+                                    | {{ k }} {{ v }} <br>
+                                {% endfor %}
+                            {% endfor %}
+                      </h4>
+                      {% for k, v in j.items %}
+                            {% if v != j.generate_img_by_user %}
+                                <h4 class="text-weight-bold">
+                                    | {{ k }}: {{ v }}
+                                </h4>
+                            {% endif %}
                         {% endfor %}
                         <br>
                   </th>
                   <td>
-                    <img src="{% static 'albert.jpg' %}" width="100" alt="My image">
+                    <img src="../media/{{ j.generate_img_by_user }}" width="100" alt="My image">
                   </td>
                 </tr>
                 {% endfor %}

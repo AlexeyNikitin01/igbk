@@ -22,3 +22,9 @@ class TextToCreateImg(models.Model):
         verbose_name = 'keywords'
         verbose_name_plural = 'keywords'
         ordering = ['-created_date']
+
+
+class UploadGenerateImageModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.ForeignKey(TextToCreateImg, on_delete=models.CASCADE)
+    generate_img_by_user = models.ImageField(upload_to='', blank=False)
