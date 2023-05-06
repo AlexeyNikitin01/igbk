@@ -2,19 +2,25 @@ import io
 import time
 
 from django.core.files.base import ContentFile
+from django.contrib.auth.models import User, Group
+
+from rest_framework import viewsets, generics
+from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+
 from image_generation.main import gen_img
+
 
 from main.models import TextToCreateImg
 from main.models import UploadGenerateImageModel
-
 from main.forms import KeysWordsForm
 
 
 from .serializers import TextToCreateImgSerializer
 from .serializers import UploadGenerateImageSerializer
+from .serializers import UserSerializer, GroupSerializer
 
 
 class TextToCreateImgViewSet(ModelViewSet):
@@ -67,3 +73,21 @@ class CreateImgViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         solutions = UploadGenerateImageSerializer(UploadGenerateImageModel.objects.all(), many=True)
         return Response(solutions.data)
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
