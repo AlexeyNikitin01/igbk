@@ -2,28 +2,27 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <p class="container text-center h1 mt-5">
-        Generate image from keywords:
-    </p>
-    <div class="container-fluid mt-5">
-        <table class="table table-dark text-center">
-          <thead>
-            <tr>
-              <th scope="col">Keywords</th>
-              <th scope="col">GenIMG</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-              {% for i in form %}
-                  {{ i }}
-              {% endfor %}
-              </td>
-              <td> Creating image ... </td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
-
+<p class="container text-center h1 mt-5">
+    Generate image from keywords:
+</p>
+<div class="container-fluid mt-5">
+    <table class="table table-dark text-center">
+        <thead>
+        <tr>
+            <th scope="col">Keywords</th>
+            <th scope="col">GenIMG</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                {% for i in form %}
+                {{ i }}
+                {% endfor %}
+            </td>
+            <td> Creating image ...</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock %}

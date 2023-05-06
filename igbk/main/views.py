@@ -77,3 +77,10 @@ class Index(View):
 
 def about(request):
     return render(request, template_name='main/about.html', context={})
+
+
+def ajax(request):
+    kwf = KeysWordsForm()
+    if kwf.is_valid():
+        return render(request, template_name='main/ajax.html', context={"form": kwf})
+    return render(request, template_name='main/ajax.html', context={"form": kwf})

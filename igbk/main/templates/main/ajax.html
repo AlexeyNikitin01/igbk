@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="text-center" id="info">
+
+    <p>
+    <form class="form-group" id="upload_solution_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form  }}
+        <input type="submit" value="Submit">
+    </form>
+    </p>
+
+    <div id="description"></div>
+    <div id="solution_list" class="center"></div>
+</div>
+
+<script>
+function update_solutions(solutions) {
+    const lst = $('#solution_list')
+    lst.html("")
+    lst.append(`${solutions[solutions.length - 1].id}`)
+    lst.append(`<img src="..${solutions[solutions.length - 1].generate_img_by_user}" alt="My image"><br>`)
+}
+
+function update_info(kw) {
+    const lst = $('#description')
+    lst.html("")
+    lst.append(`${kw[kw.length - 1].id} ${kw[kw.length - 1].created_date} ${kw[kw.length - 1].gender} <br>`)
+}
+    
+function show() {
+    $.ajax({
+        type: 'GET',
+        url: `/api/tasks/gen_img/`,
+        success: function(data) {
+            update_solutions(data);
+        },
+        error: function (data) {
+        }
+    });
+}    
+
+$(document).ready(function () {
+    show();
+	setInterval('show()', 10000);
+
+    $.ajax({
+        type: 'GET',
+        url: `/api/tasks/`,
+        success: function(data) {
+            update_info(data)
+        },
+        error: function (data) {
+        }
+    });
+})
+
+
+$(document).ready($("#upload_solution_form").submit(function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: "POST",
+            url: `/api/tasks/`,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {},
+            error: function (data) {
+                alert(JSON.stringify(data.responseJSON, null, '\t'))
+            }
+        });
+    }));
+</script>
+
+<style>
+    html {
+        font-size: 20px;
+    }
+
+</style>
+{% endblock %}
