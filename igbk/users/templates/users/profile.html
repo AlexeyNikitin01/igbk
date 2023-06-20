@@ -4,8 +4,67 @@
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
-Страница пользователя
-    <div class="dark container-fluid">
-        <h1 class="text-center">Имя пользователя ---- {{ user.username }}</h1>
+<h1 class="display-3 text-center">
+    <code>
+        WELCOME TO THE CLUB <br> {{ user.username }}
+    </code>
+</h1>
+
+<div class="dark container-fluid">
+    {% for j in pu.items %}
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Аватар</th>
+            <th scope="col">О себе</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+        </tr>
+        <tr>
+            <th>
+
+            </th>
+            <th scope="row">
+                <h4 class="text-weight-bold">
+                    {% for t in que.values %}
+                    {% for k, v in t.items %}
+                    | {{ k }} {{ v }} <br>
+                    {% endfor %}
+                    {% endfor %}
+                </h4>
+                {% for k, v in j.items %}
+                {% if v != j.generate_img_by_user %}
+                <h4 class="text-weight-bold">
+                    | {{ k }}: {{ v }}
+                </h4>
+                {% endif %}
+                {% endfor %}
+                <br>
+            </th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <p class="display-2 text-center">
+        генерации:
+    </p>
+    <div class="text-center">
+        {% for j in data.values %}
+        <tr>
+            <th scope="row">
+                <img alt="My image" src="{{ MEDIA_URL }}{{ j.generate_img_by_user }}">
+            </th>
+        </tr>
+        {% endfor %}
     </div>
+
+</div>
+
 {% endblock %}

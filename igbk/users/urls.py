@@ -5,6 +5,7 @@ from .views import UserSignUpView
 from .views import UserSignInView
 from .views import LogOut
 from .views import profile
+from .views import ProfileSettingsViews
 
 app_name = 'users'
 
@@ -14,4 +15,5 @@ urlpatterns = [
     path('login/', UserSignInView.as_view(), name='login'),
     path('logout/', LogOut.as_view(), name='logout'),
     path('profile/', profile, name='profile'),
+    path('profile/settings/', ProfileSettingsViews.as_view(), name='profile_settings'),
 ]

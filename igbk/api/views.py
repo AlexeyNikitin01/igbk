@@ -4,7 +4,7 @@ import time
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User, Group
 
-from rest_framework import viewsets, generics
+from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -50,7 +50,7 @@ class CreateTextViewSet(ModelViewSet):
         t2c.save()
         # image to model
         time.sleep(10)
-        img = gen_img(list(request.POST.values()), realize=True)
+        img = gen_img(list(request.POST.values()), realize=False)
         buf = io.BytesIO()
         img.save(buf, format='JPEG')
         img_model = UploadGenerateImageModel.objects.create(

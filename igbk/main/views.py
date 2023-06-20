@@ -20,7 +20,6 @@ def index(request):
         form = KeysWordsForm(request.POST)
         if form.is_valid():
             form.save()
-            # return render(request, 'main/done.html', {'form': form.cleaned_data.values()})
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
     else:
         form = KeysWordsForm()
@@ -79,6 +78,7 @@ def about(request):
     return render(request, template_name='main/about.html', context={})
 
 
+@login_required
 def ajax(request):
     kwf = KeysWordsForm()
     if kwf.is_valid():

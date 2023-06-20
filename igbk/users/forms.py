@@ -1,6 +1,10 @@
 from django import forms
+from django.forms import models
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.forms import TextInput, ImageField
+
+from .models import ProfileUser
 
 
 class UserSignUpForm(forms.Form):
@@ -66,3 +70,28 @@ class UserSignInForm(forms.Form):
             'placeholder': "Пароль"
         }),
     )
+
+
+class ProfileUserForm(models.ModelForm):
+    class Meta:
+        model = ProfileUser
+        fields = ('phone', 'country', 'city', 'ava', 'bio',)
+        ava = ImageField()
+        widgets = {
+            'phone': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'телефон',
+            }),
+            'country': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'страна',
+            }),
+            'city': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'city',
+            }),
+            'bio': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'bio',
+            }),
+        }

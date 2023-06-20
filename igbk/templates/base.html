@@ -30,10 +30,11 @@
             <li class="nav-item dropdown">
                 <a class="btn btn-outline-success my-2 my-sm-2 mr-2 dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                        aria-haspopup="true" aria-expanded="false">Профиль</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a>
+                <div class="dropdown-menu text-justify">
+                    <a class="dropdown-item text-left" href="{% url 'users:profile' %}">Профиль</a>
+                    <a class="dropdown-item text-left" href="{% url 'users:profile_settings' %}">Настройка</a>
                     <div class="dropdown-driver border"></div>
-                    <a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a>
+                    <a class="dropdown-item text-left" href="{% url 'users:logout' %}">Выйти</a>
                 </div>
             </li>
             {% else %}

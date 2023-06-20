@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}Настройка{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="h1">
+    Настройка пользователя
+</div>
+
+<div class="container">
+    <form action="{% url 'users:profile_settings' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="h4 mt-3">
+            {% bootstrap_form prof_set layout='horizontal' %}
+        </div>
+        {% buttons submit='Полетели!' %}{% endbuttons %}
+    </form>
+</div>
+{% else %}
+<div class="display-3 text-center mt-3 mb-5">
+    <code>
+        <a href="{% url 'users:login' %}">авторизация</a>
+    </code>
+</div>
+{% endif %}
+{% endblock %}
